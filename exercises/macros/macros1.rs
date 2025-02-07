@@ -5,6 +5,7 @@
 
 // I AM NOT DONE
 
+// 宏定义
 macro_rules! my_macro {
     () => {
         println!("Check out my macro!");
@@ -12,5 +13,5 @@ macro_rules! my_macro {
 }
 
 fn main() {
-    my_macro();
+    my_macro!();
 }
