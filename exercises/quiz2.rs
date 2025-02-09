@@ -31,12 +31,22 @@ pub enum Command {
 mod my_module {
     use super::Command;
 
-    // TODO: Complete the function signature!
-    pub fn transformer(input: ???) -> ??? {
-        // TODO: Complete the output declaration!
-        let mut output: ??? = vec![];
+    // 函数接收 Vec<(String, Command)> 作为输入，返回 Vec<String>
+    pub fn transformer(input: Vec<(String, Command)>) -> Vec<String> {
+        let mut output: Vec<String> = vec![];
         for (string, command) in input.iter() {
-            // TODO: Complete the function body. You can do it!
+            let transformed = match command {
+                Command::Uppercase => string.to_uppercase(),
+                Command::Trim => string.trim().to_string(),
+                Command::Append(times) => {
+                    let mut s = string.clone();
+                    for _ in 0..*times {
+                        s.push_str("bar");
+                    }
+                    s
+                }
+            };
+            output.push(transformed);
         }
         output
     }
@@ -44,8 +54,8 @@ mod my_module {
 
 #[cfg(test)]
 mod tests {
-    // TODO: What do we need to import to have `transformer` in scope?
-    use ???;
+    // 导入 transformer 函数和 Command 枚举
+    use super::my_module::transformer;
     use super::Command;
 
     #[test]

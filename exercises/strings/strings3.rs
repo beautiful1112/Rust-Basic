@@ -6,18 +6,26 @@
 // I AM NOT DONE
 
 fn trim_me(input: &str) -> String {
-    // TODO: Remove whitespace from both ends of a string!
-    ???
+    // trim() 方法去除字符串两端的空白字符
+    input.trim().to_string()
 }
 
 fn compose_me(input: &str) -> String {
-    // TODO: Add " world!" to the string! There's multiple ways to do this!
-    ???
+    // 方法1：使用 format! 宏
+    format!("{} world!", input)
+
+    // 方法2：使用 String 的 push_str 方法
+    // let mut s = input.to_string();
+    // s.push_str(" world!");
+    // s
+
+    // 方法3：使用 + 运算符
+    // input.to_string() + " world!"
 }
 
 fn replace_me(input: &str) -> String {
-    // TODO: Replace "cars" in the string with "balloons"!
-    ???
+    // replace 方法替换字符串中的内容
+    input.replace("cars", "balloons")
 }
 
 #[cfg(test)]

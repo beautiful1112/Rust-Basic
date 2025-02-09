@@ -18,16 +18,30 @@
 
 // I AM NOT DONE
 
-pub struct ReportCard {
-    pub grade: f32,
+// 首先定义一个 trait 来表示可以被用作成绩的类型
+pub trait Grade: std::fmt::Display {}
+
+// 为 f32 实现 Grade trait
+impl Grade for f32 {}
+
+// 为 String 实现 Grade trait
+impl Grade for String {}
+
+// 为 &str 实现 Grade trait
+impl Grade for &str {}
+
+// 修改 ReportCard 结构体使用泛型
+pub struct ReportCard<T: Grade> {
+    pub grade: T,
     pub student_name: String,
     pub student_age: u8,
 }
 
-impl ReportCard {
+// 为泛型 ReportCard 实现方法
+impl<T: Grade> ReportCard<T> {
     pub fn print(&self) -> String {
         format!("{} ({}) - achieved a grade of {}",
-            &self.student_name, &self.student_age, &self.grade)
+                &self.student_name, &self.student_age, &self.grade)
     }
 }
 
@@ -50,9 +64,8 @@ mod tests {
 
     #[test]
     fn generate_alphabetic_report_card() {
-        // TODO: Make sure to change the grade here after you finish the exercise.
         let report_card = ReportCard {
-            grade: 2.1,
+            grade: "A+",
             student_name: "Gary Plotter".to_string(),
             student_age: 11,
         };

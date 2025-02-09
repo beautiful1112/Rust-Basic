@@ -11,7 +11,10 @@
 // I AM NOT DONE
 
 pub trait Licensed {
-    fn licensing_info(&self) -> String;
+    // 为 trait 提供默认实现
+    fn licensing_info(&self) -> String {
+        "Some information".to_string()
+    }
 }
 
 struct SomeSoftware {
@@ -22,8 +25,9 @@ struct OtherSoftware {
     version_number: String,
 }
 
-impl Licensed for SomeSoftware {} // Don't edit this line
-impl Licensed for OtherSoftware {} // Don't edit this line
+// 使用默认实现
+impl Licensed for SomeSoftware {}
+impl Licensed for OtherSoftware {}
 
 #[cfg(test)]
 mod tests {
